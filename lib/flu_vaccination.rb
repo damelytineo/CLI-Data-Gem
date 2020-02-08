@@ -1,5 +1,3 @@
 class FluVaccination::FluVaccination
 
-
-
 end
