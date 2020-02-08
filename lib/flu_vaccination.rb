@@ -1,0 +1,5 @@
+class FluVaccination::FluVaccination
+
+
+
+end
