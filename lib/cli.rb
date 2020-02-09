@@ -8,7 +8,15 @@ class FluVaccination::CLI
   end
 
   def locations_filtered_by_zip(zip_code)
-    response = FluVaccination::API.new.filtered_by_zip(zip_code)
+    if FluVaccination::API.new.filtered_by_zip(zip_code).length == 0
+      puts "No locations found in your area."
+    else
+      response = FluVaccination::API.new.filtered_by_zip(zip_code)
+
+      response.each {|location|
+        FluVaccination::FluVaccination.new(location)
+      }
+    end
   end
 
 end
