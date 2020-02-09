@@ -17,6 +17,10 @@ class FluVaccination::CLI
         FluVaccination::FluVaccination.new(location)
       }
     end
-  end
 
+    FluVaccination::FluVaccination.all_locations.each.with_index(1) {|location, index|
+      puts "#{index}. #{location.facility_name} at #{location.address} #{location.borough} " + zip_code
+    }
+  end
+#Call all_locations method to access properties of locations stored in @@all. Print numbered list of location's name and address given zip-code input, for users to choose from. 
 end
