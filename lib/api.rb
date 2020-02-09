@@ -4,7 +4,7 @@ class FluVaccination::API
 
   def filtered_by_zip(zip_code)
     HTTParty.get(BASE_URL + "&zip_code=#{zip_code}")
-  end
 
+  end
 
 end
