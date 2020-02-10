@@ -21,6 +21,14 @@ class FluVaccination::CLI
     FluVaccination::FluVaccination.all_locations.each.with_index(1) {|location, index|
       puts "#{index}. #{location.facility_name} at #{location.address} #{location.borough} " + zip_code
     }
+
+    puts "Choose a location for more details."
+    
+    user_choice = gets.chomp
+
+    chosen_location = FluVaccination::FluVaccination.all_locations[user_choice.to_i - 1]
+    puts "#{chosen_location.facility_name}, #{chosen_location.address} #{chosen_location.borough} NY #{chosen_location.zip_code}, #{chosen_location.phone}, Walk-ins accepted? #{chosen_location.walk_in}, Children? #{chosen_location.children}, #{chosen_location.more_information}"
   end
-#Call all_locations method to access properties of locations stored in @@all. Print numbered list of location's name and address given zip-code input, for users to choose from. 
+
 end
+#Prompt user to select a location. Assign choice (num) to variable. Use variable to access location corresponding to choice. Puts location's full information.
