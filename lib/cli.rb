@@ -8,11 +8,11 @@ class FluVaccination::CLI
   end
 
   def locations_filtered_by_zip(zip_code)
-    if FluVaccination::API.new.filtered_by_zip(zip_code).length == 0 
+    if FluVaccination::API.new.filtered_by_zip(zip_code).length == 0
       puts "No locations found in your area."
     else
       locations = FluVaccination::API.new.filtered_by_zip(zip_code)
-      FluVaccination::FluVaccination.create_from_api_response(locations)
+      FluVaccination::FluVaccination.create_from_api_response(locations) 
     end
 
     FluVaccination::FluVaccination.print_list
@@ -23,9 +23,13 @@ class FluVaccination::CLI
   def final_location
     puts "Choose a location for more details."
 
-    user_choice = gets.chomp
+    user_choice = gets.chomp.to_i
 
-    FluVaccination::FluVaccination.print_chosen_location(user_choice)
+    while user_choice < 1 || user_choice > FluVaccination::FluVaccination.all_locations.length
+      puts "Invalid choice. Try again."
+      user_choice = gets.chomp.to_i
+    end
+      FluVaccination::FluVaccination.print_chosen_location(user_choice)
   end
 
 end

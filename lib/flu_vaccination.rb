@@ -30,7 +30,8 @@ class FluVaccination::FluVaccination
   end
 
   def self.print_chosen_location(user_choice)
-    x = self.all_locations[user_choice.to_i - 1]
+    x = self.all_locations[user_choice - 1]
     puts "#{x.facility_name} at #{x.address} #{x.borough}, NY #{x.zip_code}\nPhone number: #{x.phone}\nWalk-ins accepted? #{x.walk_in}\nChildren accepted? #{x.children}\nFor more information: #{x.more_information}"
   end
+
 end
