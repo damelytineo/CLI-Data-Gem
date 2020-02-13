@@ -8,27 +8,24 @@ class FluVaccination::CLI
   end
 
   def locations_filtered_by_zip(zip_code)
-    if FluVaccination::API.new.filtered_by_zip(zip_code).length == 0
+    if FluVaccination::API.new.filtered_by_zip(zip_code).length == 0 
       puts "No locations found in your area."
     else
-      response = FluVaccination::API.new.filtered_by_zip(zip_code)
-
-      response.each {|location|
-        FluVaccination::FluVaccination.new(location)
-      }
+      locations = FluVaccination::API.new.filtered_by_zip(zip_code)
+      FluVaccination::FluVaccination.create_from_api_response(locations)
     end
 
-    FluVaccination::FluVaccination.all_locations.each.with_index(1) {|location, index|
-      puts "#{index}. #{location.facility_name} at #{location.address} #{location.borough} " + zip_code
-    }
+    FluVaccination::FluVaccination.print_list
 
+    final_location
+  end
+
+  def final_location
     puts "Choose a location for more details."
-    
+
     user_choice = gets.chomp
 
-    chosen_location = FluVaccination::FluVaccination.all_locations[user_choice.to_i - 1]
-    puts "#{chosen_location.facility_name}, #{chosen_location.address} #{chosen_location.borough} NY #{chosen_location.zip_code}, #{chosen_location.phone}, Walk-ins accepted? #{chosen_location.walk_in}, Children? #{chosen_location.children}, #{chosen_location.more_information}"
+    FluVaccination::FluVaccination.print_chosen_location(user_choice)
   end
 
 end
-#Prompt user to select a location. Assign choice (num) to variable. Use variable to access location corresponding to choice. Puts location's full information.
