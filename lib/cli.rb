@@ -6,7 +6,7 @@ class FluVaccination::CLI
   end
 
   def first_return
-    puts "For a list of locations offering free vaccination against the flu near you enter your zip-code:"
+    puts "For a list of locations providing seasonal flu vaccinations near you enter your zip-code:"
     zip_code = gets.chomp
     locations_filtered_by_zip(zip_code)
     chosen_location
