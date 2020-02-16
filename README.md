@@ -1,8 +1,6 @@
 # FluVaccination
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/flu_vaccination`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome! This gem provides a Command Line Interface (CLI) to an external data source -- a list of locations offering flu vaccination services in NYC -- with the help of HTTParty, it parses the data response to allow for methods that filter the data by zip-code. When prompted, the user would enter his/her zip_code, the program would then puts/print a numbered list of nearby locations within the zip_code, finally, the user would have the option of selecting one of the choices to obtain more details or simply typing in exit to exit the program. 
 
 ## Installation
 
